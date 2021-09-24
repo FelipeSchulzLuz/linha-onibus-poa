@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Props } from 'react';
 import BusContext from './store';
+import store from './store';
 
 export interface ICoords {
     lat: string;
@@ -7,30 +8,23 @@ export interface ICoords {
 }
 
 type State = {
-    coords: ICoords[];
+    coords?: ICoords[];
+    setCoords: (coords: ICoords[]) => void;
+};
+
+
+function Provider(props: Props<any>) {
+    const [state, setState] = React.useState<State>();
+    const [coords, setCoords] = React.useState<ICoords[]>([]);
+
+
+
+    return (
+        <BusContext.Provider value={{coords,setCoords}} >
+            {props.children}
+        </BusContext.Provider>
+    );
 }
 
-class Provider extends Component<{}, State> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            coords: []
-        };
-    }
-
-    handleChangeCoords = (coordinates: ICoords[]) => {
-        this.setState({ coords: coordinates });
-    }
-
-    render() {
-        const coords = this.state.coords;
-        const changeCoords = this.handleChangeCoords;
-        return (
-            <BusContext.Provider value={{ coords, changeCoords }} >
-                {this.props.children}
-            </BusContext.Provider>
-        );
-    }
-}
 
 export default Provider;

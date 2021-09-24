@@ -1,4 +1,5 @@
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { log } from 'console';
 import { memo, useCallback, useState, useContext, useEffect } from "react";
 import store from '../../../core/store/store';
 
@@ -14,6 +15,12 @@ const center = {
     lng: -51.191644
 };
 
+
+interface Markers {
+    lat: string;
+    lng: string;
+}
+
 function CustomMap() {
     const [mapMarkers, setMapMarkers] = useState([])
     const { isLoaded } = useJsApiLoader({
@@ -23,11 +30,19 @@ function CustomMap() {
 
     const { coords } = useContext(store);
 
+
     useEffect(() => {
-        if (coords.length > 0) {
-            setMapMarkers(coords)
-        }
-    })
+        const listMarker = coords.map((coord: any) => {
+            return {
+                lat: coord.latitude,
+                lng: coord.longitude
+            }
+        })
+        console.log(coords);
+        console.log(listMarker);
+        
+        // setMapMarkers(listMarker)
+    }, [coords])
 
     const onLoad = useCallback(function callback(map) {
         try {
@@ -53,9 +68,9 @@ function CustomMap() {
         >
             { /* Child components, such as markers, info windows, etc. */}
             <>
-                {mapMarkers?.map((marker, index) =>
+                {/* {mapMarkers?.map((marker, index) =>
                     <Marker key={index} position={{ lat: marker.lat, lng: marker.lng }} />
-                )}
+                )} */}
             </>
         </GoogleMap>
     ) : <></>
