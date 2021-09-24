@@ -1,9 +1,5 @@
-import * as React from 'react';
+import { createContext } from "react";
 
-
-const BusConstext = React.createContext<any>({
-    coords: {},
-    changeCoords: (list: any[]) => { },
+const MyContext = createContext({
+    
 });
-
-export default BusConstext;

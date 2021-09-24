@@ -1,41 +1,18 @@
 import React, { Component } from 'react';
+import Provider from '../../../core/store/Provider';
 import CustomMap from '../../features/GoogleMap';
 import LineBus from "../../features/LineBus"
 
 
-export interface IPosition {
-    lat: number;
-    lng: number;
-}
-
-export interface IBus {
-    id: string,
-    nome: string,
-}
-export interface Props {
-    busList: [],
-    lotationList: [],
-    busId: string,
-}
-
-class Home extends Component {
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            busLines: [],
-            lotationLines: [],
-            busId: 0,
-        };
-    }
-
-    render() {
-        return (
-            <div className="home" >
+function Home() {
+    return (
+        <div className="home" >
+            <Provider>
                 <LineBus />
                 <CustomMap />
-            </div>
-        )
-    }
+            </Provider>
+        </div>
+    )
 }
 
 

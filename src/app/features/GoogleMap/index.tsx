@@ -1,5 +1,7 @@
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import { memo, useCallback, useState } from "react";
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { memo, useCallback, useState, useContext, useEffect } from "react";
+import store from '../../../core/store/store';
+
 
 const containerStyle = {
     minWidth: '60%',
@@ -13,10 +15,18 @@ const center = {
 };
 
 function CustomMap() {
-    const [mapMarkers, setMapMarkers] = useState(null)
+    const [mapMarkers, setMapMarkers] = useState([])
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: "AIzaSyBcQWLh4s4znH97dNwvVkSdHgkztFp-78Y"
+    })
+
+    const { coords } = useContext(store);
+
+    useEffect(() => {
+        if (coords.length > 0) {
+            setMapMarkers(coords)
+        }
     })
 
     const onLoad = useCallback(function callback(map) {
@@ -30,7 +40,7 @@ function CustomMap() {
     }, [])
 
     const onUnmount = useCallback(function callback(map) {
-        setMapMarkers(null)
+        setMapMarkers([])
     }, [])
 
     return isLoaded ? (
@@ -43,6 +53,9 @@ function CustomMap() {
         >
             { /* Child components, such as markers, info windows, etc. */}
             <>
+                {mapMarkers?.map((marker, index) =>
+                    <Marker key={index} position={{ lat: marker.lat, lng: marker.lng }} />
+                )}
             </>
         </GoogleMap>
     ) : <></>
