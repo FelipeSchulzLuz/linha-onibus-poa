@@ -28,6 +28,7 @@ export default function Index() {
             console.log(res)
             return res;
         })
+        console.log(id)
     }
 
     function handleSearchChange(event: any) {
