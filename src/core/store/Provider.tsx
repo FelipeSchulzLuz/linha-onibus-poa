@@ -1,6 +1,5 @@
-import React, { Component, Props } from 'react';
+import React, { Props } from 'react';
 import BusContext from './store';
-import store from './store';
 
 export interface ICoords {
     lat: string;
