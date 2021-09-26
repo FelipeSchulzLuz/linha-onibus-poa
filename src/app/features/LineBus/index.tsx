@@ -29,10 +29,8 @@ export default function Index() {
 
     function handleClick(event: any, id: string) {
         loadLongLat(id).then((res) => {
-            console.log(res)
             setCoords(res)
         })
-        console.log(id)
     }
 
     function handleSearchChange(event: any) {

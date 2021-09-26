@@ -4,7 +4,7 @@ import { createContext } from "react";
 
 interface IStore {
     coords: ICoords[];
-    setCoords: (coords: ICoords[]) => void;
+    setCoords: (coordinates: ICoords[]) => void;
 }
 
 export const store: IStore = {
