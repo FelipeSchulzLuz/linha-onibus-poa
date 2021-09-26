@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import Provider from '../../../core/store/Provider';
 import CustomMap from '../../features/GoogleMap';
 import LineBus from "../../features/LineBus"
@@ -14,7 +13,5 @@ function Home() {
         </div>
     )
 }
-
-
 
 export default Home;
