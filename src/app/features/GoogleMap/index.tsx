@@ -9,7 +9,7 @@ const containerStyle = {
     height: '100vh'
 };
 
-const center = {
+let center = {
     lat: -30.043392,
     lng: -51.191644
 };
@@ -27,7 +27,7 @@ function CustomMap() {
         strokeColor: '#3f3fb8',
         strokeWeight: 4,
         fillColor: '#3f3fb8',
-        clickable: false,
+        clickable: true,
         draggable: false,
         editable: false,
         visible: true,
@@ -49,7 +49,6 @@ function CustomMap() {
             if (map.length > 0) {
                 map.fitBounds(center);
                 setMapMarkers(map)
-
             }
         }
         catch (e: any) {
@@ -72,7 +71,16 @@ function CustomMap() {
         >
             {mapMarkers?.map((marker: ICoords, index: number) => {
                 if (index === 0 || index === mapMarkers.length - 1) {
-                    return <Marker key={"marker" + index} position={{ lat: Number(marker.lat), lng: Number(marker.lng) }} options={{ visible: true }} />
+                    if (index === -1) {
+                        return <Marker key={"marker" + index} position={{ lat: Number(marker.lat), lng: Number(marker.lng) }} options={{ visible: true }} />
+                    } else {
+                        const centerOfPolyline = (index / 2);
+                        parseInt(centerOfPolyline.toString())
+                        const { lat, lng } = mapMarkers[parseInt(centerOfPolyline.toString())];
+                        center = { lat: Number(lat), lng: Number(lng) };
+
+                        return <Marker key={"marker" + index} position={{ lat: Number(marker.lat), lng: Number(marker.lng) }} options={{ visible: true }} />
+                    }
                 } else {
                     return <Marker key={"marker" + index} position={{ lat: Number(marker.lat), lng: Number(marker.lng) }} options={{ visible: false }} />
                 }

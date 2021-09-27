@@ -10,7 +10,7 @@ export default async function loadLinesList(isBus) {
 export async function loadLongLat(id) {
     const listOfCoords = []
     const resp = await axios.get(`${BASE_URL}a=il&p=${id}`);
-    for (const [key, value] of Object.entries(resp.data)) {
+    for (const [, value] of Object.entries(resp.data)) {
         const line = value;
         listOfCoords.push({
             lat: line.lat,

@@ -1,5 +1,7 @@
-html,body {
+html,
+body {
   height: 100%;
+  -webkit-print-color-adjust: exact;
 }
 
 .home {
@@ -7,7 +9,6 @@ html,body {
   background-color: #282c34;
   width: 100vw;
 }
-
-.active {
+s .active {
   background-color: #425d92;
 }

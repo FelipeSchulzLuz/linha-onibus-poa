@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import style from "./style.module.scss"
 import { IBus } from "../../../core/models/IBus.model";
 import loadLinesList, { loadLongLat } from "../../../core/services/busLine.service";
@@ -10,7 +10,7 @@ export default function Index() {
     const [dataFilter, setDataFilter] = useState([]);
     const [search, setSearch] = useState('');
     const [isBus, setIsBus] = useState(true);
-    // const [isActive, setActive] = useState(false);
+    const buttonRef = useRef(null);
 
     const { setCoords } = useContext(BusContext);
 
@@ -27,14 +27,10 @@ export default function Index() {
     }
 
     function handleClick(event: any, id: string) {
-        event.currentTarget.classList.add(style.active);
-
         loadLongLat(id).then((res) => {
             setCoords(res)
         })
-    }
-    function handleBlur(event: any) {
-        event.currentTarget.classList.remove(style.active);
+        event.currentTarget.classList.add(style.active);
     }
 
     function handleSearchChange(event: any) {
@@ -48,31 +44,32 @@ export default function Index() {
         <div className={style.container}>
             <div className={style.selectorGroup}>
                 <Switch checked={isBus} onClick={handleChange} />
+                <label hidden htmlFor="search">Escolha:</label>
                 <label className={style.label}>{isBus ? "Ônibus" : "Lotação"}</label>
             </div>
             <div className={style.col}>
-                <input value={search} className={style.item} type="search" placeholder="Buscar" onChange={handleSearchChange} />
+                <label hidden htmlFor="search">Busca:</label>
+                <input id="search" value={search} className={style.item} type="search" placeholder="Buscar" onChange={handleSearchChange} />
             </div>
             <div className={style.header}>
                 <div className="col">Nome</div>
                 <div className="col">Linha</div>
             </div>
             {dataFilter.map((item: IBus) => (
-                <div key={item.id} className={style.row}
+                <div ref={buttonRef} key={item.id} className={style.row}
                     onClick={(e) => {
+                        for (const button of buttonRef.current.parentElement.children) {
+                            if (button.classList.contains(style.active)) {
+                                button.classList.remove(style.active);
+                            }
+                        }
                         handleClick(e, item.id)
-                        // setActive(true)
                     }}
                 >
-
-                    <div className={style.item} >{item.nome}</div>
-                    <div className={style.item} >{item.codigo}</div>
+                    <div className="col">{item.nome}</div>
+                    <div className="col">{item.codigo}</div>
                 </div>
-            ))
-            }
-        </div >
-    );
+            ))}
+        </div>
+    )
 }
-
-
-
