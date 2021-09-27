@@ -14,9 +14,9 @@
   color: #fff;
   margin: 2px;
   text-decoration: none;
-  border: 1px 0 1px 0 solid #4b4b4b;
+  border: 1px 0 1px 0 solid #3d74da;
   transition: color 0.15s ease, border-color 0.15s ease;
-  background-color: rgb(68, 66, 64);
+  background-color: #444240;
   white-space: nowrap;
 
   & > :first-child {
@@ -40,7 +40,6 @@
     transition: 0.6s;
     cursor: pointer;
   }
-
 }
 
 .col {
@@ -60,6 +59,8 @@
 .header {
   display: flex;
   justify-content: space-between;
+  color: #fff;
+  padding: 0.5em 1em;
 }
 
 .selectorGroup {
@@ -98,6 +99,6 @@
   color: #fff;
 }
 
-.buttonActive {
+.active {
   background-color: #3d74da;
 }
