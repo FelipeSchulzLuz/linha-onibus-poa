@@ -74,9 +74,9 @@ function CustomMap() {
                     if (index === -1) {
                         return <Marker key={"marker" + index} position={{ lat: Number(marker.lat), lng: Number(marker.lng) }} options={{ visible: true }} />
                     } else {
-                        const centerOfPolyline = (index / 2);
-                        parseInt(centerOfPolyline.toString())
-                        const { lat, lng } = mapMarkers[parseInt(centerOfPolyline.toString())];
+                        const centerOfLine = (index / 2);
+                        parseInt(centerOfLine.toString())
+                        const { lat, lng } = mapMarkers[parseInt(centerOfLine.toString())];
                         center = { lat: Number(lat), lng: Number(lng) };
 
                         return <Marker key={"marker" + index} position={{ lat: Number(marker.lat), lng: Number(marker.lng) }} options={{ visible: true }} />
