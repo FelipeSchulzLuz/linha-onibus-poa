@@ -1,5 +1,5 @@
 import { GoogleMap, Marker, Polyline, useJsApiLoader } from '@react-google-maps/api';
-import { memo, useCallback, useState, useContext, useEffect } from "react";
+import { memo, useState, useContext, useEffect } from "react";
 import { ICoords } from '../../../core/store/Provider';
 import store from '../../../core/store/store';
 
@@ -44,30 +44,12 @@ function CustomMap() {
         setMapMarkers(listMarkers);
     }, [coords]);
 
-    const onLoad = useCallback(function callback(map) {
-        try {
-            if (map.length > 0) {
-                map.fitBounds(center);
-                setMapMarkers(map)
-            }
-        }
-        catch (e: any) {
-            console.log(e.message);
-        }
-    }, [])
-
-    const onUnmount = useCallback(function callback(map) {
-        setMapMarkers([])
-    }, [])
-
     return isLoaded ? (
         <GoogleMap
             id="map"
             mapContainerStyle={containerStyle}
             center={center}
             zoom={12}
-            onLoad={onLoad}
-            onUnmount={onUnmount}
         >
             {mapMarkers?.map((marker: ICoords, index: number) => {
                 if (index === 0 || index === mapMarkers.length - 1) {
@@ -75,7 +57,6 @@ function CustomMap() {
                         return <Marker key={"marker" + index} position={{ lat: Number(marker.lat), lng: Number(marker.lng) }} options={{ visible: true }} />
                     } else {
                         const centerOfLine = (index / 2);
-                        parseInt(centerOfLine.toString())
                         const { lat, lng } = mapMarkers[parseInt(centerOfLine.toString())];
                         center = { lat: Number(lat), lng: Number(lng) };
 
@@ -89,8 +70,4 @@ function CustomMap() {
         </GoogleMap>
     ) : <></>
 }
-
-
-
-
 export default memo(CustomMap)
