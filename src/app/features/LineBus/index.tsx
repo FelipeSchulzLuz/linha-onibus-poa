@@ -2,9 +2,8 @@ import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
 import style from "./style.module.scss"
 import { IBus } from "../../../core/models/IBus.model";
 import loadLinesList, { loadLongLat } from "../../../core/services/busLine.service";
-import Switch from '@material-ui/core/Switch';
 import BusContext from "../../../core/store/store";
-import { Typography } from "@material-ui/core";
+import { Typography, Switch } from "@material-ui/core";
 import { ICoords } from "../../../core/store/Provider";
 
 export default function Index() {
@@ -77,9 +76,8 @@ export default function Index() {
                     defaultValue={item.id}
                     onClick={(e) => {
                         setActive(item.id);
-                        handleClick(e, item.id)
-                    }}
-                >
+                        handleClick(e, item.id);
+                    }}>
                     <div className="col">{item.nome}</div>
                     <div className="col">{item.codigo}</div>
                 </div>
