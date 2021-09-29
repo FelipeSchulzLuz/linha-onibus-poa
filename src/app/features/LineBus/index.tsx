@@ -44,6 +44,7 @@ export default function Index() {
         document.getElementById(isActive)?.classList.remove(style.active);
         loadLongLat(id).then((res) => {
             setCoords(res)
+            setSearch('')
         })
         event.currentTarget.classList.add(style.active);
     }
