@@ -1,10 +1,7 @@
 import React, { Props } from 'react';
+import { ICoords } from '../models/ICoords.model';
 import BusContext from './store';
 
-export interface ICoords {
-    lat: string;
-    lng: string;
-}
 
 function Provider(props: Props<any>) {
     const [coords, setCoords] = React.useState<ICoords[]>([]);

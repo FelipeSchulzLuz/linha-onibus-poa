@@ -1,10 +1,10 @@
 import React, { SyntheticEvent, useContext, useEffect, useState } from "react";
 import style from "./style.module.scss"
 import { IBus } from "../../../core/models/IBus.model";
+import { ICoords } from "../../../core/models/ICoords.model";
 import loadLinesList, { loadLongLat } from "../../../core/services/busLine.service";
 import BusContext from "../../../core/store/store";
 import { Typography, Switch } from "@material-ui/core";
-import { ICoords } from "../../../core/store/Provider";
 
 export default function Index() {
     const [data, setData] = useState([]);

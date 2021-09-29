@@ -1,6 +1,6 @@
 import { GoogleMap, Marker, Polyline, useJsApiLoader } from '@react-google-maps/api';
 import { memo, useState, useContext, useEffect } from "react";
-import { ICoords } from '../../../core/store/Provider';
+import { ICoords } from "../../../core/models/ICoords.model";
 import store from '../../../core/store/store';
 
 const containerStyle = {

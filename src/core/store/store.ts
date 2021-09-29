@@ -1,4 +1,4 @@
-import { ICoords } from './Provider';
+import { ICoords } from './../models/ICoords.model';
 import { createContext } from "react";
 
 
