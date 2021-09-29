@@ -58,18 +58,20 @@ export default function Index() {
 
     return (
         <div className={style.container}>
-            <div className={style.selectorGroup}>
-                <Typography id="lotation" className={style.titleChoices} variant="h5">Lotação</Typography>
-                <Switch checked={isBus} onClick={handleChange} />
-                <Typography id="bus" className={style.titleChoices} variant="h5">Ônibus</Typography>
-            </div>
-            <div className={style.col}>
-                <label hidden htmlFor="search">Busca:</label>
-                <input id="search" value={search} className={style.item} type="search" placeholder="Buscar" onChange={handleSearchChange} />
-            </div>
             <div className={style.header}>
-                <div className="col">Nome</div>
-                <div className="col">Linha</div>
+                <div className={style.selectorGroup}>
+                    <Typography id="lotation" className={style.titleChoices} variant="h5">Lotação</Typography>
+                    <Switch checked={isBus} onClick={handleChange} />
+                    <Typography id="bus" className={style.titleChoices} variant="h5">Ônibus</Typography>
+                </div>
+                <div className={style.col}>
+                    <label hidden htmlFor="search">Busca:</label>
+                    <input id="search" value={search} className={style.item} type="search" placeholder="Buscar" onChange={handleSearchChange} />
+                </div>
+                <div className={style.groupHeader}>
+                    <div className="col">Nome</div>
+                    <div className="col">Linha</div>
+                </div>
             </div>
             {dataFilter.map((item: IBus) => (
                 <div key={item.id} id={item.id}

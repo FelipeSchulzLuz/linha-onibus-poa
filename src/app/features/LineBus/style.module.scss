@@ -28,12 +28,12 @@
 
   & > :first-child {
     overflow: hidden;
-    width: 360px;
+    width: 75%;
     border-right: 1px solid #4b4b4b;
   }
   & > :last-child {
+    padding-left: 1em;
     min-width: 70px;
-    width: 1fr;
   }
 
   & > .item {
@@ -62,11 +62,24 @@
   }
 }
 
-.header {
+.groupHeader {
   display: flex;
   justify-content: space-between;
   color: #ececec;
+  padding: 0.5em 0.5em 0 0.5em;
+}
+
+.header {
+  background-color: #444240;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #ececec;
   padding: 0.5em 0.5em;
+  position: sticky;
+  top: 0;
+  border-bottom: 2px solid #4b4b4b;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
 .selectorGroup {
